@@ -1,0 +1,49 @@
+Name     Decoder Driver ;
+PartNo   GAL22V10 ;
+Date     10/27/2016 ;
+Revision 01 ;
+Designer Spencer Ng ;
+Company   ;
+Assembly None ;
+Location  ;
+Device   g22v10 ;
+/* Notch facing up when display is up */
+
+/* ****** INPUT PINS ********/
+/* Left side of chip */
+PIN  2  = Z                        ; /* MSB */
+PIN  3  = Y                        ; 
+PIN  4  = X                        ; 
+PIN  5  = W                        ; 
+PIN  6  = V                        ; 
+PIN  7  = U                        ; /* LSB */
+
+
+/* PIN 12 is GND */
+
+/* *************** OUTPUT PINS *********************/
+
+PIN  23  = ZO                        ; /* MSB */
+PIN  22  = YO                       ; 
+PIN  21  = XO                        ; 
+PIN  20  = WO                       ; 
+PIN  19  = VO                        ; 
+PIN  18  = UO                        ; /* LSB */
+PIN 17 = D1I;
+PIN 16 = EI;
+PIN 15 = G1I;
+
+/* PIN 24 is VCC */
+
+/* ********* LOGIC EQUATIONS *******/
+
+ZO=Z;
+YO=Y;
+XO=X;
+WO=W;
+VO=V;
+UO=U;
+
+D1I=(!X&Y&U)#(Z&X&!W&U)#(!Z&W&!V&U)#(!Z&!X&W&Y&V)#(!Z&X&!W&Y&!U)#(!Z&X&!W&V&!U)#(!X&!W&!Y&!V&!U)#(Z&!X&Y&!V);
+EI=(!Z&X&Y&!V)#(X&W&Y&!V)#(Z&X&W&!U)#(Z&W&Y&!U)#(Z&X&W&!Y&V)#(!Z&!X&!W&!Y&U)#(Z&!X&!W&!Y&!U);
+G1I=(X&!W&Y&!V)#(!Z&X&!Y&!V)#(X&W&!Y&!U)#(X&Y&!V&!U)#(Z&X&Y&V&U)#(!Z&!X&Y&V&U)#(!Z&!X&!Y&V&!U) ;
